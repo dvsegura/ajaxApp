@@ -2,11 +2,11 @@
     $conection = mysqli_connect( 
         'localhost',
         'root',
-        'pasword',
-        'task-app'
+        '',
+        'task_app'
     );
-    if($conection){
+/*     if($conection){
         echo "db conectada"; 
-    }
+    } */
 
 ?>
