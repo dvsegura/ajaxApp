@@ -1,7 +1,7 @@
 $(function () {
     console.log("jquery funcionando");
     $('#task-result').hide();
-    fetchTaks();
+    fetchTaks(); //funcion que genera listado de las tareas
 
     $('#search').keyup(function (e) {
         if ($('#search').val()) {
@@ -35,7 +35,7 @@ $(function () {
         $.post('task-add.php', postData, function (response) {
             console.log(response);
             fetchTaks();
-            $('#task-form').trigger('reset');
+            $('#task-form').trigger('reset'); //limpiar formulario
         });
         e.preventDefault();
     });
@@ -50,11 +50,13 @@ $(function () {
                 let template = '';
                 task.forEach(task => {
                     template += `
-                        <tr>
+                        <tr taskId='${task.id}'>
                             <td>${task.id}</td>
                             <td>${task.name}</td>
                             <td>${task.description}</td>
-                            <td><button class='btn btn-danger'>Delete</button></td>
+                            <td><button class='task-delete btn btn-danger'>
+                                     Delete
+                                </button></td>
                         </tr>
                     `;
                 });
@@ -62,5 +64,19 @@ $(function () {
             }
         });
     }
+
+    $(document).on('click', '.task-delete', function () {
+        //console.log(this);
+        if (confirm("Está seguro que quiere eliminar esta tarea")) {
+            let element = $(this)[0].parentElement.parentElement; //obtener id
+            let id = $(element).attr('taskId');
+            console.log(id);
+            $.post('task-delete.php', { id }, function (response) {
+                // console.log(response);
+                fetchTaks();//refrescar listado
+            })
+        }
+
+    });
 
 });
