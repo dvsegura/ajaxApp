@@ -2,10 +2,10 @@
     include('database.php');
     if(isset($_POST['name'])){
         $name = $_POST['name'];
-        $description = $_POST['description'];
+        $descripcion = $_POST['descripcion'];
         $query = "INSERT INTO task 
                     (name,description) 
-                    VALUES('$name','$description')
+                    VALUES('$name','$descripcion')
             ";
         $result = mysqli_query($conection,$query);
         if(!$result){

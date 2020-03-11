@@ -12,10 +12,10 @@ $(function () {
                 type: 'POST',
                 data: { search },
                 success: function (response) {
-                    let tasks = JSON.parse(response);
-                    //console.log(tasks);
+                    let task = JSON.parse(response);
+                    //console.log(task);
                     let templete = '';
-                    tasks.forEach(task => {
+                    task.forEach(task => {
                         templete += `<li>${task.name}</li>`;
                     });
                     $('#container').html(templete);
@@ -28,7 +28,7 @@ $(function () {
     $('#task-form').submit(function (e) {
         const postData = {
             name: $('#name').val(),
-            description: $('#description').val()
+            descripcion: $('#descripcion').val()
         }
         //console.log(postData);
         //enviar datos al servidor 
@@ -53,21 +53,22 @@ $(function () {
                         <tr taskId='${task.id}'>
                             <td>${task.id}</td>
                             <td>${task.name}</td>
-                            <td>${task.description}</td>
+                            <td>${task.descripcion}</td>
                             <td><button class='task-delete btn btn-danger'>
                                      Delete
                                 </button></td>
                         </tr>
                     `;
                 });
-                $('#tasks').html(template);
+                $('#task').html(template);
+               
             }
         });
     }
 
     $(document).on('click', '.task-delete', function () {
         //console.log(this);
-        if (confirm("Está seguro que quiere eliminar esta tarea")) {
+        if (confirm("Está seguro que quiere eliminar esta task")) {
             let element = $(this)[0].parentElement.parentElement; //obtener id
             let id = $(element).attr('taskId');
             console.log(id);

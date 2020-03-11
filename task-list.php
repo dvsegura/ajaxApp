@@ -10,7 +10,7 @@
     while($row = mysqli_fetch_array($result)){
         $json [] = array(
             'name' => $row['name'],
-            'description' => $row['description'],
+            'descripcion' => $row['description'],
             'id' => $row['id']
         ); 
     }
