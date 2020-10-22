@@ -5,8 +5,4 @@
         '',
         'task_app'
     );
-/*     if($conection){
-        echo "db conectada"; 
-    } */
-
 ?>

@@ -10,7 +10,7 @@
         "; 
         $resultado = mysqli_query($conection,$query);    
         if(!$resultado){
-            die('Query Err'.mysqli_error($conection));
+            die('Query Error'.mysqli_error($conection));
         }
         $json = array();
         while($row = mysqli_fetch_array($resultado)){
@@ -19,8 +19,7 @@
                 'descripcion' => $row['description'],
                 'id' => $row['id']
             );
-        }
-        //convertir a string
+        }        
         $jsonstring = json_encode($json);
         echo $jsonstring;
     }
